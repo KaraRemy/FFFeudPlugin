@@ -35,7 +35,7 @@ public class ConfigWindow : Window, IDisposable
 
         if (configuration.Categories.Count == 0)
         {
-            configuration.Categories.Add(new Category { Name = "General" });
+            configuration.Categories.Add(DefaultQuestions.GetDefaultCategory());
             configuration.Save();
         }
     }
@@ -129,7 +129,7 @@ public class ConfigWindow : Window, IDisposable
                     var question = category.Questions[qIndex];
                     
                     bool isSelected = (activeQuestion == question);
-                    if (ImGui.Selectable($"{category.Name}-{qIndex + 1}: {question.Title}##q_{cIndex}_{qIndex}", isSelected))
+                    if (ImGui.Selectable($"{qIndex + 1}: {question.Title}##q_{cIndex}_{qIndex}", isSelected))
                     {
                         activeQuestion = question;
                         activeCategory = category;
@@ -216,32 +216,32 @@ public class ConfigWindow : Window, IDisposable
             ImGui.PushID($"ans_{i}");
             
             string ansText = answer.Text;
-            ImGui.SetNextItemWidth(ImGui.GetContentRegionAvail().X - 150);
-            if (ImGui.InputText("##Text", ref ansText, 100))
+            ImGui.SetNextItemWidth(ImGui.GetContentRegionAvail().X - 100);
+            if (ImGui.InputTextWithHint("##Text", "Answer", ref ansText, 100))
             {
                 answer.Text = ansText;
                 configuration.Save();
             }
 
             ImGui.SameLine();
-            ImGui.SetNextItemWidth(100);
+            ImGui.SetNextItemWidth(80);
             int pts = answer.Points;
-            if (ImGui.InputInt("Points", ref pts))
+            if (ImGui.InputInt("Pts", ref pts))
             {
                 if (pts < 0) pts = 0;
                 answer.Points = pts;
                 configuration.Save();
             }
 
-            ImGui.SameLine();
             string descText = answer.Description;
-            ImGui.SetNextItemWidth(ImGui.GetContentRegionAvail().X - 50);
-            if (ImGui.InputText("Node##Desc", ref descText, 255))
+            ImGui.SetNextItemWidth(ImGui.GetContentRegionAvail().X);
+            if (ImGui.InputTextWithHint("##Desc", "Host Note / Description", ref descText, 255))
             {
                 answer.Description = descText;
                 configuration.Save();
             }
 
+            ImGui.Spacing();
             totalPoints += answer.Points;
             
             ImGui.PopID();
