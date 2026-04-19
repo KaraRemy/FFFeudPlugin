@@ -1,7 +1,7 @@
-﻿using Dalamud.Configuration;
+using Dalamud.Configuration;
 using System;
 
-namespace SamplePlugin;
+namespace FFFeudPlugin;
 
 [Serializable]
 public class Configuration : IPluginConfiguration
