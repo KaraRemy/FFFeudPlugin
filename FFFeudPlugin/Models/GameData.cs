@@ -15,6 +15,7 @@ public class Answer
 public class Question
 {
     public string Title { get; set; } = "New Question";
+    [Newtonsoft.Json.JsonProperty(ObjectCreationHandling = Newtonsoft.Json.ObjectCreationHandling.Replace)]
     public List<Answer> Answers { get; set; } = new();
 
     public Question()

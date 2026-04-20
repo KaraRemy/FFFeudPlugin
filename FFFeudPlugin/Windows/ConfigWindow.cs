@@ -261,27 +261,103 @@ public class ConfigWindow : Window, IDisposable
         ImGui.Spacing();
         if (ImGui.Button("Delete Question"))
         {
-            activeCategory.Questions.Remove(activeQuestion);
-            activeQuestion = null;
-            configuration.Save();
+            ImGui.OpenPopup("ConfirmDelete");
+        }
+
+        bool popupOpen = true;
+        if (ImGui.BeginPopupModal("ConfirmDelete", ref popupOpen, ImGuiWindowFlags.AlwaysAutoResize))
+        {
+            ImGui.Text("Are you sure you want to delete this question?");
+            ImGui.Separator();
+            
+            float buttonWidth = 120f;
+            float totalWidth = (buttonWidth * 2) + ImGui.GetStyle().ItemSpacing.X;
+            ImGui.SetCursorPosX((ImGui.GetWindowSize().X - totalWidth) * 0.5f);
+
+            if (ImGui.Button("Yes", new Vector2(buttonWidth, 0)))
+            {
+                activeCategory.Questions.Remove(activeQuestion);
+                activeQuestion = null;
+                configuration.Save();
+                ImGui.CloseCurrentPopup();
+            }
+            ImGui.SameLine();
+            if (ImGui.Button("No", new Vector2(buttonWidth, 0)))
+            {
+                ImGui.CloseCurrentPopup();
+            }
+            ImGui.EndPopup();
         }
     }
 
     private void DrawSettingsTab()
     {
-        ImGui.Text("General Settings");
-        
-        var configValue = configuration.SomePropertyToBeSavedAndWithADefault;
-        if (ImGui.Checkbox("Random Config Bool", ref configValue))
+        ImGui.TextColored(new Vector4(1f, 1f, 0f, 1f), "Chat Settings");
+        ImGui.Separator();
+
+        string prefix = configuration.ChatPrefix;
+        ImGui.SetNextItemWidth(100);
+        if (ImGui.InputText("Chat Channel Prefix (e.g. /p, /a, /s)", ref prefix, 10))
         {
-            configuration.SomePropertyToBeSavedAndWithADefault = configValue;
+            configuration.ChatPrefix = prefix;
             configuration.Save();
         }
 
-        var movable = configuration.IsConfigWindowMovable;
-        if (ImGui.Checkbox("Movable Config Window", ref movable))
+        int delay = configuration.ChatDelayMs;
+        ImGui.SetNextItemWidth(200);
+        if (ImGui.InputInt("Chat Delay in ms", ref delay, 50))
         {
-            configuration.IsConfigWindowMovable = movable;
+            if (delay < 0) delay = 0;
+            configuration.ChatDelayMs = delay;
+            configuration.Save();
+        }
+
+        ImGui.Spacing();
+
+        string msgSend = configuration.MsgSendQuestion;
+        ImGui.SetNextItemWidth(ImGui.GetContentRegionAvail().X);
+        if (ImGui.InputTextWithHint("Send Question Template", "Use [QUESTION]", ref msgSend, 255))
+        {
+            configuration.MsgSendQuestion = msgSend;
+            configuration.Save();
+        }
+
+        string msgActive = configuration.MsgActiveTeam;
+        ImGui.SetNextItemWidth(ImGui.GetContentRegionAvail().X);
+        if (ImGui.InputTextWithHint("Active Team Template", "Use [TEAM_NAME]", ref msgActive, 255))
+        {
+            configuration.MsgActiveTeam = msgActive;
+            configuration.Save();
+        }
+
+        string msgStrike = configuration.MsgStrike;
+        ImGui.SetNextItemWidth(ImGui.GetContentRegionAvail().X);
+        if (ImGui.InputTextWithHint("Strike Template", "Use [STRIKES], [TEAM_NAME]", ref msgStrike, 255))
+        {
+            configuration.MsgStrike = msgStrike;
+            configuration.Save();
+        }
+
+        string msgStrike3 = configuration.MsgStrikeThree;
+        ImGui.SetNextItemWidth(ImGui.GetContentRegionAvail().X);
+        if (ImGui.InputTextWithHint("3 Strikes Template", "Use [STRIKES], [TEAM_NAME], [OTHER_TEAM]", ref msgStrike3, 255))
+        {
+            configuration.MsgStrikeThree = msgStrike3;
+            configuration.Save();
+        }
+
+        string msgEnd = configuration.MsgEndQuestion;
+        ImGui.SetNextItemWidth(ImGui.GetContentRegionAvail().X);
+        if (ImGui.InputTextWithHint("End Round Template", "Use [TEAM_A], [SCORE_A]", ref msgEnd, 255))
+        {
+            configuration.MsgEndQuestion = msgEnd;
+            configuration.Save();
+        }
+
+        string msgBoard = configuration.MsgShowBoard;
+        if (ImGui.InputTextMultiline("Show Board Template", ref msgBoard, 1000, new Vector2(ImGui.GetContentRegionAvail().X, ImGui.GetTextLineHeightWithSpacing() * 3.5f)))
+        {
+            configuration.MsgShowBoard = msgBoard;
             configuration.Save();
         }
     }
