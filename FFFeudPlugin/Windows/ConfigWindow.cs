@@ -36,6 +36,7 @@ public class ConfigWindow : Window, IDisposable
         if (configuration.Categories.Count == 0)
         {
             configuration.Categories.Add(DefaultQuestions.GetDefaultCategory());
+            configuration.Categories.Add(ClassicQuestions.GetClassicCategory());
             configuration.Save();
         }
     }
@@ -58,6 +59,12 @@ public class ConfigWindow : Window, IDisposable
                 ImGui.EndTabItem();
             }
 
+            if (ImGui.BeginTabItem("Help"))
+            {
+                DrawHelpTab();
+                ImGui.EndTabItem();
+            }
+
             ImGui.EndTabBar();
         }
     }
@@ -68,12 +75,60 @@ public class ConfigWindow : Window, IDisposable
         ImGui.Columns(2, "QuestionColumns", true);
         ImGui.SetColumnWidth(0, 300f);
 
-        // --- Left Pane: Explorer ---
-        DrawExplorerPane();
+        // --- Header Row ---
+        // Column 0: Add Category
+        if (ImGui.Button("+ Add Category"))
+        {
+            configuration.Categories.Add(new Category { Name = "New Category" });
+            configuration.Save();
+        }
 
         ImGui.NextColumn();
 
-        // --- Right Pane: Editor ---
+        // Column 1: Restore Button
+        float btnWidth = 240f;
+        ImGui.SetCursorPosX(ImGui.GetCursorPosX() + ImGui.GetContentRegionAvail().X - btnWidth);
+        if (ImGui.Button("Restore Default Questions", new Vector2(btnWidth, 0)))
+        {
+            ImGui.OpenPopup("ConfirmRestore");
+        }
+
+        bool confirmRestoreOpen = true;
+        if (ImGui.BeginPopupModal("ConfirmRestore", ref confirmRestoreOpen, ImGuiWindowFlags.AlwaysAutoResize))
+        {
+            ImGui.Text("Do you want to add the Default and Classic questions to your database?");
+            ImGui.Separator();
+            
+            float modalBtnWidth = 120f;
+            float totalWidth = (modalBtnWidth * 2) + ImGui.GetStyle().ItemSpacing.X;
+            ImGui.SetCursorPosX((ImGui.GetWindowSize().X - totalWidth) * 0.5f);
+            
+            if (ImGui.Button("Yes", new Vector2(modalBtnWidth, 0)))
+            {
+                configuration.Categories.Add(Models.DefaultQuestions.GetDefaultCategory());
+                configuration.Categories.Add(Models.ClassicQuestions.GetClassicCategory());
+                configuration.Save();
+                ImGui.CloseCurrentPopup();
+            }
+            ImGui.SameLine();
+            if (ImGui.Button("No", new Vector2(modalBtnWidth, 0)))
+            {
+                ImGui.CloseCurrentPopup();
+            }
+            ImGui.EndPopup();
+        }
+
+        // --- Separators ---
+        ImGui.NextColumn();
+        ImGui.Separator();
+        ImGui.NextColumn();
+        ImGui.Separator();
+
+        // --- Body Row ---
+        ImGui.NextColumn();
+        DrawExplorerPane(); // Now only draws the tree
+
+        ImGui.NextColumn();
         DrawEditorPane();
 
         ImGui.Columns(1);
@@ -81,14 +136,6 @@ public class ConfigWindow : Window, IDisposable
 
     private unsafe void DrawExplorerPane()
     {
-        if (ImGui.Button("+ Add Category"))
-        {
-            configuration.Categories.Add(new Category { Name = "New Category" });
-            configuration.Save();
-        }
-
-        ImGui.Separator();
-
         for (int cIndex = 0; cIndex < configuration.Categories.Count; cIndex++)
         {
             var category = configuration.Categories[cIndex];
@@ -296,7 +343,7 @@ public class ConfigWindow : Window, IDisposable
         ImGui.Separator();
 
         string prefix = configuration.ChatPrefix;
-        ImGui.SetNextItemWidth(100);
+        ImGui.SetNextItemWidth(200);
         if (ImGui.InputText("Chat Channel Prefix (e.g. /p, /a, /s)", ref prefix, 10))
         {
             configuration.ChatPrefix = prefix;
@@ -360,5 +407,14 @@ public class ConfigWindow : Window, IDisposable
             configuration.MsgShowBoard = msgBoard;
             configuration.Save();
         }
+    }
+
+    private void DrawHelpTab()
+    {
+        ImGui.TextColored(new Vector4(0f, 1f, 1f, 1f), "FF Feud - Help & Plugin Info");
+        ImGui.Separator();
+        ImGui.Spacing();
+
+        ImGui.TextWrapped("Hier kommt die Beschreibung hin - you can write a long markdown-like text here to explain how the plugin works.");
     }
 }

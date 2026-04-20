@@ -5,7 +5,7 @@ public static class DefaultQuestions
 {
     public static Category GetDefaultCategory()
     {
-        var category = new Category { Name = "Base Game Questions" };
+        var category = new Category { Name = "FF Feud Questions" };
         {
             var q = new Question { Title = "The hardest job to play is ..." };
             q.Answers.Clear();
