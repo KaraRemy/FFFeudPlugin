@@ -63,9 +63,10 @@ public class MainWindow : Window, IDisposable
 
     private void DrawGameArea()
     {
-        ImGui.TextColored(new Vector4(1, 0.8f, 0, 1), "TEAMS");
+        ImGui.TextColored(new Vector4(1, 0.8f, 0, 1), "Game Overview");
 
-        // Teams
+        ImGui.BeginGroup();
+        // Team A
         string tA = State.TeamAName;
         ImGui.SetNextItemWidth(150);
         if (ImGui.InputText("##TeamA", ref tA, 100)) { State.TeamAName = tA; Config.Save(); }
@@ -75,6 +76,7 @@ public class MainWindow : Window, IDisposable
         int sA = State.TeamAScore;
         if (ImGui.InputInt("Score A", ref sA)) { State.TeamAScore = sA; Config.Save(); }
 
+        // Team B
         string tB = State.TeamBName;
         ImGui.SetNextItemWidth(150);
         if (ImGui.InputText("##TeamB", ref tB, 100)) { State.TeamBName = tB; Config.Save(); }
@@ -83,13 +85,20 @@ public class MainWindow : Window, IDisposable
         ImGui.SetNextItemWidth(80);
         int sB = State.TeamBScore;
         if (ImGui.InputInt("Score B", ref sB)) { State.TeamBScore = sB; Config.Save(); }
+        ImGui.EndGroup();
 
         ImGui.SameLine();
+        if (ImGui.Button("End\nGame", new Vector2(100, ImGui.GetFrameHeightWithSpacing() * 2 + ImGui.GetStyle().FramePadding.Y)))
+        {
+            ImGui.OpenPopup("ConfirmEndGame");
+        }
+
         if (ImGui.Button("Reset Game"))
         {
             ImGui.OpenPopup("ConfirmReset");
         }
 
+        // --- Modals ---
         bool popupOpen = true;
         if (ImGui.BeginPopupModal("ConfirmReset", ref popupOpen, ImGuiWindowFlags.AlwaysAutoResize))
         {
@@ -110,6 +119,34 @@ public class MainWindow : Window, IDisposable
                 State.Strikes = 0;
                 State.ResetQuestionState();
                 Config.Save();
+                ImGui.CloseCurrentPopup();
+            }
+            ImGui.SameLine();
+            if (ImGui.Button("No", new Vector2(buttonWidth, 0)))
+            {
+                ImGui.CloseCurrentPopup();
+            }
+            ImGui.EndPopup();
+        }
+
+        if (ImGui.BeginPopupModal("ConfirmEndGame", ref popupOpen, ImGuiWindowFlags.AlwaysAutoResize))
+        {
+            ImGui.Text("Do you want to end the game and announce the winner in chat?");
+            ImGui.Separator();
+
+            float buttonWidth = 120f;
+            float totalWidth = (buttonWidth * 2) + ImGui.GetStyle().ItemSpacing.X;
+            ImGui.SetCursorPosX((ImGui.GetWindowSize().X - totalWidth) * 0.5f);
+
+            if (ImGui.Button("Yes", new Vector2(buttonWidth, 0)))
+            {
+                string winnerName = State.TeamAScore >= State.TeamBScore ? State.TeamAName : State.TeamBName;
+                int winnerScore = State.TeamAScore >= State.TeamBScore ? State.TeamAScore : State.TeamBScore;
+
+                string msg = Config.MsgEndGame
+                    .Replace("[WINNER_TEAM]", winnerName)
+                    .Replace("[WINNER_SCORE]", winnerScore.ToString());
+                SendToChat(msg);
                 ImGui.CloseCurrentPopup();
             }
             ImGui.SameLine();
@@ -212,6 +249,14 @@ public class MainWindow : Window, IDisposable
                 {
                     State.RevealedAnswers[i] = !revealed;
                     Config.Save();
+
+                    if (!revealed) // Transition from hidden to revealed
+                    {
+                        string msg = Config.MsgRevealAnswer
+                            .Replace("[ANSWER]", ans.Text)
+                            .Replace("[POINTS]", ans.Points.ToString());
+                        SendToChat(msg);
+                    }
                 }
                 ImGui.PopID();
 
@@ -240,9 +285,6 @@ public class MainWindow : Window, IDisposable
             ImGui.EndTable();
         }
         
-        ImGui.Spacing();
-        ImGui.Text($"Board Total Points: {State.BoardTotalPoints}");
-        ImGui.Text($"Strikes: {State.Strikes}/3");
     }
 
     private void DrawNavigationArea()
@@ -276,7 +318,9 @@ public class MainWindow : Window, IDisposable
         ImGui.SameLine();
         ImGui.TextColored(new Vector4(0, 1, 1, 1), $"Current points on the Board: {State.BoardTotalPoints}");
         
-        ImGui.SameLine();
+        ImGui.Spacing();
+        ImGui.TextColored(new Vector4(1, 0, 0, 1), "STRIKES");
+
         if (ImGui.Button($"Strike! ({State.Strikes})"))
         {
             State.Strikes++;
@@ -302,6 +346,7 @@ public class MainWindow : Window, IDisposable
 
         ImGui.Spacing();
         ImGui.Separator();
+        ImGui.TextColored(new Vector4(1, 0.8f, 0, 1), "TEAMS");
 
         if (ImGui.Button("Award Board to Team A"))
         {
@@ -317,6 +362,16 @@ public class MainWindow : Window, IDisposable
             State.BoardTotalPoints = 0;
             Config.Save();
             FormatEndRound();
+        }
+
+        if (ImGui.Button("Show Team Scores"))
+        {
+            string txt = Config.MsgTeamScores
+                .Replace("[TEAM_A]", State.TeamAName)
+                .Replace("[SCORE_A]", State.TeamAScore.ToString())
+                .Replace("[TEAM_B]", State.TeamBName)
+                .Replace("[SCORE_B]", State.TeamBScore.ToString());
+            SendToChat(txt);
         }
     }
 

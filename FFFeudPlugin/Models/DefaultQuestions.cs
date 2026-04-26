@@ -8,6 +8,7 @@ public static class DefaultQuestions
         var category = new Category { Name = "FF Feud Questions" };
         {
             var q = new Question { Title = "The hardest job to play is ..." };
+            q.Id = "FF-001";
             q.Answers.Clear();
         q.Answers.Add(new Answer { Text = "Black Mage", Description = "", Points = 28 });
         q.Answers.Add(new Answer { Text = "Ninja", Description = "", Points = 19 });
@@ -21,6 +22,7 @@ public static class DefaultQuestions
         }
         {
             var q = new Question { Title = "What would make you quit a duty instantly?" };
+            q.Id = "FF-002";
             q.Answers.Clear();
         q.Answers.Add(new Answer { Text = "Where the jobstone at?", Description = "No jobstone", Points = 21 });
         q.Answers.Add(new Answer { Text = "That's just mean!", Description = "Intense toxicity, harassment", Points = 20 });
@@ -34,6 +36,7 @@ public static class DefaultQuestions
         }
         {
             var q = new Question { Title = "Name something healers have nightmares about!" };
+            q.Id = "FF-003";
             q.Answers.Clear();
         q.Answers.Add(new Answer { Text = "The tank suuuucks", Description = "Bad Tank, no MITS", Points = 38 });
         q.Answers.Add(new Answer { Text = "Oh! Another Vuln Stack :3", Description = "Players collecting Vuln Stacks (Black Mage & Dragoon)", Points = 18 });
@@ -47,6 +50,7 @@ public static class DefaultQuestions
         }
         {
             var q = new Question { Title = "What is the worst thing to happen during a difficult duty?" };
+            q.Id = "FF-004";
             q.Answers.Clear();
         q.Answers.Add(new Answer { Text = "Someone gets Pokeballed", Description = "DC / Crash", Points = 36 });
         q.Answers.Add(new Answer { Text = "NO YOU SUCK!!!!", Description = "Fighting & Toxicity in chat, Bad Vibe In Chat", Points = 21 });
@@ -60,6 +64,7 @@ public static class DefaultQuestions
         }
         {
             var q = new Question { Title = "The expansion I liked the most is ..." };
+            q.Id = "FF-005";
             q.Answers.Clear();
         q.Answers.Add(new Answer { Text = "Shadowbringers", Description = "", Points = 50 });
         q.Answers.Add(new Answer { Text = "Endwalker", Description = "", Points = 32 });
@@ -73,6 +78,7 @@ public static class DefaultQuestions
         }
         {
             var q = new Question { Title = "What is the most common complaint about the game?" };
+            q.Id = "FF-006";
             q.Answers.Clear();
         q.Answers.Add(new Answer { Text = "It's so boring, what do I do?", Description = "Lack of content / boring", Points = 32 });
         q.Answers.Add(new Answer { Text = "Jobs feel too similar", Description = "", Points = 17 });
@@ -86,6 +92,7 @@ public static class DefaultQuestions
         }
         {
             var q = new Question { Title = "Name the most annoying grind you did!" };
+            q.Id = "FF-007";
             q.Answers.Clear();
         q.Answers.Add(new Answer { Text = "Relic Weapons / Tools", Description = "ARR Relic, Bozja relic weapons in 2026, Occult Crescent relic", Points = 58 });
         q.Answers.Add(new Answer { Text = "Field Operation", Description = "Bozja, Eureka, Occult Crescent", Points = 11 });
@@ -99,6 +106,7 @@ public static class DefaultQuestions
         }
         {
             var q = new Question { Title = "It is very hard to find a good..." };
+            q.Id = "FF-008";
             q.Answers.Clear();
         q.Answers.Add(new Answer { Text = "Tank / Healer / DPS", Description = "Specific Role or Job", Points = 29 });
         q.Answers.Add(new Answer { Text = "Static", Description = "P  F Group, Static, Random group for Ultimates, DF group", Points = 26 });
@@ -112,6 +120,7 @@ public static class DefaultQuestions
         }
         {
             var q = new Question { Title = "What is the most annoying story character?" };
+            q.Id = "FF-009";
             q.Answers.Clear();
         q.Answers.Add(new Answer { Text = "Laaamaaatschiiii", Description = "Wuk Lamat", Points = 29 });
         q.Answers.Add(new Answer { Text = "(early) Alphinaud", Description = "", Points = 15 });
@@ -125,6 +134,7 @@ public static class DefaultQuestions
         }
         {
             var q = new Question { Title = "My favourite (scion) companion is..." };
+            q.Id = "FF-010";
             q.Answers.Clear();
         q.Answers.Add(new Answer { Text = "G'raha Tia", Description = "", Points = 21 });
         q.Answers.Add(new Answer { Text = "Alisae", Description = "", Points = 20 });
@@ -138,6 +148,7 @@ public static class DefaultQuestions
         }
         {
             var q = new Question { Title = "Name the best gift to receive or give!" };
+            q.Id = "FF-011";
             q.Answers.Clear();
         q.Answers.Add(new Answer { Text = "A golden Beaver", Description = "Minions", Points = 21 });
         q.Answers.Add(new Answer { Text = "*Coin noises*", Description = "Gil", Points = 20 });
@@ -151,6 +162,7 @@ public static class DefaultQuestions
         }
         {
             var q = new Question { Title = "What is the most used or a must have emote?" };
+            q.Id = "FF-012";
             q.Answers.Clear();
         q.Answers.Add(new Answer { Text = "♥", Description = "Dote / Loveheart", Points = 30 });
         q.Answers.Add(new Answer { Text = "Just Dance!", Description = "Bee's Knees, Manderville Mambo, any Dancing", Points = 22 });
@@ -164,6 +176,7 @@ public static class DefaultQuestions
         }
         {
             var q = new Question { Title = "The item I constantly have to throw away is..." };
+            q.Id = "FF-013";
             q.Answers.Clear();
         q.Answers.Add(new Answer { Text = "Materia", Description = "", Points = 22 });
         q.Answers.Add(new Answer { Text = "Those Gordian Lenses", Description = "Unwanted Trial / Raid token", Points = 18 });
@@ -177,6 +190,7 @@ public static class DefaultQuestions
         }
         {
             var q = new Question { Title = "What is the best or worst item to buy at the Mogry Kiosk (cash shop)?" };
+            q.Id = "FF-014";
             q.Answers.Clear();
         q.Answers.Add(new Answer { Text = "Vroom Vroom Bike", Description = "Mounts", Points = 21 });
         q.Answers.Add(new Answer { Text = "Pot of paint", Description = "Dyes", Points = 18 });
@@ -190,6 +204,7 @@ public static class DefaultQuestions
         }
         {
             var q = new Question { Title = "Name a category of items on the marketboard you feel is way too expensive!" };
+            q.Id = "FF-015";
             q.Answers.Clear();
         q.Answers.Add(new Answer { Text = "This full set of gear I just bought *sniff*", Description = "Gear / Glam", Points = 21 });
         q.Answers.Add(new Answer { Text = "Dressed in Black", Description = "Dyes", Points = 20 });
@@ -203,6 +218,7 @@ public static class DefaultQuestions
         }
         {
             var q = new Question { Title = "My favourite place to afk or chill is ..." };
+            q.Id = "FF-016";
             q.Answers.Clear();
         q.Answers.Add(new Answer { Text = "Home Sweet Home", Description = "My house / FC House", Points = 55 });
         q.Answers.Add(new Answer { Text = "Limsaland", Description = "Limsa", Points = 11 });
@@ -216,6 +232,7 @@ public static class DefaultQuestions
         }
         {
             var q = new Question { Title = "Name the best spot for a secret (e-)rp date!" };
+            q.Id = "FF-017";
             q.Answers.Clear();
         q.Answers.Add(new Answer { Text = "My Secret ERP Dungeon", Description = "My House / Room / Island", Points = 38 });
         q.Answers.Add(new Answer { Text = "ERP? I don't do that!", Description = "IDK, not telling, I dont do that", Points = 17 });
@@ -229,6 +246,7 @@ public static class DefaultQuestions
         }
         {
             var q = new Question { Title = "Name the biggest red flag another player can show!" };
+            q.Id = "FF-018";
             q.Answers.Clear();
         q.Answers.Add(new Answer { Text = "Hey cutie, you here often? :3", Description = "Being weird in a sexual way / Creep", Points = 24 });
         q.Answers.Add(new Answer { Text = "L2P idiot", Description = "Different standards on how to play & Complaining about it", Points = 22 });
@@ -242,6 +260,7 @@ public static class DefaultQuestions
         }
         {
             var q = new Question { Title = "What is something you hate to see in chat?" };
+            q.Id = "FF-019";
             q.Answers.Clear();
         q.Answers.Add(new Answer { Text = "18+ only!!! Join our Club now!", Description = "Ads vor venues / rmt / events", Points = 48 });
         q.Answers.Add(new Answer { Text = "Fuck you!", Description = "Toxicity", Points = 21 });
@@ -255,6 +274,7 @@ public static class DefaultQuestions
         }
         {
             var q = new Question { Title = "I think the worst thing about venues is..." };
+            q.Id = "FF-020";
             q.Answers.Clear();
         q.Answers.Add(new Answer { Text = "Their fucking ads!", Description = "ADS, spam, pf spam", Points = 54 });
         q.Answers.Add(new Answer { Text = "That's a nice little everything you have there", Description = "The Weirdos & creeps", Points = 12 });
@@ -268,6 +288,7 @@ public static class DefaultQuestions
         }
         {
             var q = new Question { Title = "What do you think is most lied about ingame?" };
+            q.Id = "FF-021";
             q.Answers.Clear();
         q.Answers.Add(new Answer { Text = "I killed M11S with one hand behind my back", Description = "Their Skill / Progress", Points = 49 });
         q.Answers.Add(new Answer { Text = "I'm Ashley, 21 :3", Description = "Gender / Age", Points = 16 });
@@ -281,6 +302,7 @@ public static class DefaultQuestions
         }
         {
             var q = new Question { Title = "Name something you definitely don't want to see on an Adventurer's Plate!" };
+            q.Id = "FF-022";
             q.Answers.Clear();
         q.Answers.Add(new Answer { Text = "An almost naked catgirl!", Description = "Lewd, profane or nude portraits", Points = 38 });
         q.Answers.Add(new Answer { Text = "F+, WU/T ERP", Description = "ERP preferences & Details", Points = 16 });
@@ -294,6 +316,7 @@ public static class DefaultQuestions
         }
         {
             var q = new Question { Title = "What is the funniest or weirdest thing you have seen a Lalafell do?" };
+            q.Id = "FF-023";
             q.Answers.Clear();
         q.Answers.Add(new Answer { Text = "Mia, did you tend to the customer in room 3 already?", Description = "Weird Roleplaying (Pimp, Child, etc.), act childlike", Points = 24 });
         q.Answers.Add(new Answer { Text = "Die! (Play Dead)", Description = "Any answer implying lalas disappear, die, etc.", Points = 19 });
@@ -307,6 +330,7 @@ public static class DefaultQuestions
         }
         {
             var q = new Question { Title = "The most unhinged party finder entry i saw was about ..." };
+            q.Id = "FF-024";
             q.Answers.Clear();
         q.Answers.Add(new Answer { Text = "Ruby, I need another feet pic!", Description = "Feet Pic Trading,IRL Feet HQ, Rose selling feet pics on Discord, feet", Points = 26 });
         q.Answers.Add(new Answer { Text = "M Bunny looking for cute AuRa gf", Description = "Playing PF-Tinder, anything where someone looks for an (irl) partner", Points = 24 });
@@ -320,6 +344,7 @@ public static class DefaultQuestions
         }
         {
             var q = new Question { Title = "Name the most suspicious title a player can have on display!" };
+            q.Id = "FF-025";
             q.Answers.Clear();
         q.Answers.Add(new Answer { Text = "Domitrix", Description = "", Points = 34 });
         q.Answers.Add(new Answer { Text = "Any Legend Title", Description = "Ultimate & Legend titles", Points = 21 });
@@ -333,6 +358,7 @@ public static class DefaultQuestions
         }
         {
             var q = new Question { Title = "What is the worst thing to happen during an (e-)rp session?" };
+            q.Id = "FF-026";
             q.Answers.Clear();
         q.Answers.Add(new Answer { Text = "Get right with Halone, sinner!", Description = "(I don't rp), idk", Points = 19 });
         q.Answers.Add(new Answer { Text = "Crossing boundaries & consent issues", Description = "", Points = 18 });
@@ -346,6 +372,7 @@ public static class DefaultQuestions
         }
         {
             var q = new Question { Title = "Name something people wouldn't admit they did ingame!" };
+            q.Id = "FF-027";
             q.Answers.Clear();
         q.Answers.Add(new Answer { Text = "The Lewding!", Description = "any erp related answer, taking lewd screenshots, etc", Points = 46 });
         q.Answers.Add(new Answer { Text = "Mare La-what now?", Description = "Use 3rd Party Tools", Points = 20 });
@@ -359,6 +386,7 @@ public static class DefaultQuestions
         }
         {
             var q = new Question { Title = "Something I don't want to see when entering my house or apartment is ..." };
+            q.Id = "FF-028";
             q.Answers.Clear();
         q.Answers.Add(new Answer { Text = "Strangers doing the dirty", Description = "any answer with erp", Points = 32 });
         q.Answers.Add(new Answer { Text = "Someone else. Leave me alone.", Description = "Anyone, Wanting to be left alone - angle", Points = 20 });
@@ -372,6 +400,7 @@ public static class DefaultQuestions
         }
         {
             var q = new Question { Title = "What is a common reason an ingame marriage breaks?" };
+            q.Id = "FF-029";
             q.Answers.Clear();
         q.Answers.Add(new Answer { Text = "My spouse stopped playing...", Description = "One of spouse is quit without telling the other, Not Playing Anymore, Partner stops playing", Points = 31 });
         q.Answers.Add(new Answer { Text = "They broke up Irl :(", Description = "IRL breakup", Points = 18 });
@@ -385,6 +414,7 @@ public static class DefaultQuestions
         }
         {
             var q = new Question { Title = "I am most likely to report someone if they ..." };
+            q.Id = "FF-030";
             q.Answers.Clear();
         q.Answers.Add(new Answer { Text = "Is toxic in chat", Description = "Is toxic in chat, bad vibes", Points = 31 });
         q.Answers.Add(new Answer { Text = "Are racist, sexist, homophobic or a bigot", Description = "", Points = 19 });
@@ -398,6 +428,7 @@ public static class DefaultQuestions
         }
         {
             var q = new Question { Title = "Name the most Limsa thing a person can do or say!" };
+            q.Id = "FF-031";
             q.Answers.Clear();
         q.Answers.Add(new Answer { Text = "The AFK Guard", Description = "Dance randomly while afk, The suspicious pile of three people sitting on top of one another, Admiral Merlwybb is the best", Points = 31 });
         q.Answers.Add(new Answer { Text = "Looking Lewd & Dancing, Emoting alot", Description = "", Points = 23 });
@@ -411,6 +442,7 @@ public static class DefaultQuestions
         }
         {
             var q = new Question { Title = "What is the most obvious giveaway someone is a hardcore erp'er?" };
+            q.Id = "FF-032";
             q.Answers.Clear();
         q.Answers.Add(new Answer { Text = "2B bottoms & Hempen Camise", Description = "Lewd Outfits", Points = 30 });
         q.Answers.Add(new Answer { Text = "ERP GER/ENG WU/T F+M♥", Description = "Stuff in their search tags (WU/T / Mare / ERP)", Points = 21 });
@@ -424,6 +456,7 @@ public static class DefaultQuestions
         }
         {
             var q = new Question { Title = "The most annoying macro you have seen was..." };
+            q.Id = "FF-033";
             q.Answers.Clear();
         q.Answers.Add(new Answer { Text = "I know I died, thank you!", Description = "Rez Macros", Points = 26 });
         q.Answers.Add(new Answer { Text = "WHY IS THERE SOUND AAAH", Description = "Any macro with sound effects", Points = 21 });
@@ -437,6 +470,7 @@ public static class DefaultQuestions
         }
         {
             var q = new Question { Title = "What is the most unhinged mod you have seen for FF?" };
+            q.Id = "FF-034";
             q.Answers.Clear();
         q.Answers.Add(new Answer { Text = "*inflation noises*", Description = "Balloon Proportions", Points = 22 });
         q.Answers.Add(new Answer { Text = "All the lewd & sexy ones", Description = "", Points = 18 });
