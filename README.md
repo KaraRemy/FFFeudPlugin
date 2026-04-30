@@ -6,7 +6,7 @@
 
 *   **Question Database**: Manage a library of custom questions and answers.
 *   **Host Control Panel**: A dedicated interface to reveal answers, track strikes, and manage the game flow.
-*   **Team Scoring**: Built-in point tracking for multiple teams with automatic total calculations.
+*   **Team Scoring**: Built-in team scoring with automatic total calculations.
 *   **Chat Integration**: Output reveals, scores, and game status directly to party, FC, or event chat channels with customizable templates.
 
 
