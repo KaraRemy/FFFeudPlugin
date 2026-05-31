@@ -19,7 +19,7 @@ public class MainWindow : Window, IDisposable
     private readonly Queue<string> messageQueue = new();
     private DateTime nextMessageTime = DateTime.MinValue;
 
-    public MainWindow(Plugin plugin, string dummy)
+    public MainWindow(Plugin plugin)
         : base("Host Panel - FF Feud###FFFeudHostPanel", ImGuiWindowFlags.NoScrollbar | ImGuiWindowFlags.NoScrollWithMouse)
     {
         this.plugin = plugin;
