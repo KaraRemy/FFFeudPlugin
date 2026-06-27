@@ -10,5 +10,6 @@
     "event"
   ],
   "DalamudApiLevel": 15,
-  "Version": "0.0.0.3"
+  "Version": "0.0.0.4",
+  "RepoUrl": "https://github.com/KaraRemy/TomokPlugins"
 }
