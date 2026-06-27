@@ -36,6 +36,16 @@ Use `/fffeud` to open the main host panel.
 
 ---
 
+## Support & Community
+
+If you need help, want to report a bug, or suggest new features, join my support Discord server:
+📢 **[Join the Support Discord](https://discord.gg/PvxW4mXaWp)**
+
+If you enjoy my work and would like to support plugin development, you can buy me a coffee!
+☕ **[Support on Ko-fi](https://ko-fi.com/kararemy)**
+
+---
+
 ## AI Disclosure / Collaboration Note
 
 > [!NOTE]
