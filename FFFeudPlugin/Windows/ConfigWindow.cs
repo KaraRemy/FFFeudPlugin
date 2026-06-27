@@ -626,5 +626,22 @@ Round Structure:
 
 This plugin enables you to send semi-automated messages to the in-game chat. Use responsibly. 
 Do not use it in public chat channels (say, yell, shout). Make parties or a private alliance.");
+
+        ImGui.Spacing();
+        ImGui.Separator();
+        ImGui.Spacing();
+
+        ImGui.TextColored(new Vector4(0.3f, 0.8f, 1f, 1f), "Support & Community");
+        ImGui.Spacing();
+        if (ImGui.Button("Join Support Discord"))
+        {
+            Dalamud.Utility.Util.OpenLink("https://discord.gg/PvxW4mXaWp");
+        }
+        ImGui.SameLine();
+        if (ImGui.Button("Support on Ko-fi"))
+        {
+            Dalamud.Utility.Util.OpenLink("https://ko-fi.com/kararemy");
+        }
+        ImGui.Spacing();
     }
 }
